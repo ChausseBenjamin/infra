@@ -102,6 +102,6 @@ lfs:
   ssh_enabled: true
 # Cron job configuration
 jobs:
-  mirror_pull: '@every 10m'
+  mirror_pull: x27@every 24hx27
 # Additional admin keys.
 initial_admin_keys: [ssh-rsa JUST_FOR_SETUP]
