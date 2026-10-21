@@ -11,7 +11,7 @@ entryPoints:
   web:
   websecure:
     address: :443
-    http3: {}
+    http3: true
     asDefault: true
 certificatesResolvers:
   cloudflare:

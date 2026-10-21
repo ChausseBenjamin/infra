@@ -1,7 +1,7 @@
 ---
 services:
   dyndns:
-    image: favonia/cloudflare-ddns:1.16.2
+    image: favonia/cloudflare-ddns:1.17.1
     network_mode: host
     user: 1000:1000
     read_only: true
