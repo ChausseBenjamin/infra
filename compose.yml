@@ -13,8 +13,8 @@ services:
     ports:
       - 443:443/tcp  # https
       - 443:443/udp  # https
-      - 80:80  # http
-      # - 8080:8080  # dashboard+api (do not expose)
+      - 80:80  # for https redirect
+      # - 8080:8080  # dashboard+api (DO NOT EXPOSE)
     environment:
       - CF_DNS_API_TOKEN=${CLOUDFLARE_TOKEN}
       - DOMAIN=${DOMAIN}

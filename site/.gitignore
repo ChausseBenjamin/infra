@@ -5,5 +5,10 @@ manual-critical.css
 critical-temp.css
 lighthouse-report.json
 
+# Hugo output when run from site/ instead of site/data/
+/public/
+/.hugo_build.lock
+/resources/
+
 # Node modules if using npm performance tools
 node_modules/

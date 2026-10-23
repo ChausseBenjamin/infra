@@ -1,14 +1,14 @@
 ---
 services:
   site:
-    image: nginx:1.31
+    build: ./docker
     networks: [web]
-    ports: [1234:80]
     volumes:
       - ./data/public:/usr/share/nginx/html:ro
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     labels:
       - traefik.enable=true
+      - traefik.http.routers.site.entrypoints=websecure
       - traefik.http.routers.site.tls.certresolver=cloudflare
       - traefik.http.routers.site.rule=Host(`${DOMAIN}`) || Host(`${ALT_DOMAIN}`)
         || HOST(`www.${DOMAIN}`) || HOST(`www.${ALT_DOMAIN}`)
@@ -16,4 +16,18 @@ services:
       - traefik.http.routers.site.tls.domains[0].sans=www.${DOMAIN}
       - traefik.http.routers.site.tls.domains[1].main=${ALT_DOMAIN}
       - traefik.http.routers.site.tls.domains[1].sans=www.${ALT_DOMAIN}
+      - traefik.http.services.site.loadbalancer.server.port=80
     restart: unless-stopped
+
+  # Run the site tooling without a local hugo/ImageMagick install:
+  #   docker compose run --rm builder make build-optimized
+  builder:
+    build:
+      context: ./docker
+      target: builder
+    image: infra-site-builder
+    profiles: [tools]
+    working_dir: /src
+    network_mode: none
+    volumes:
+      - .:/src

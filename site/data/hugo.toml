@@ -1,5 +1,5 @@
 baseURL = 'https://chausse.dev/'
-languageCode = 'en-ca'
+locale = 'en-CA'
 title = 'Chausse Benjamin'
 
 # Disable default taxonomies since we don't use them
@@ -8,7 +8,7 @@ disableKinds = ["taxonomy", "term"]
 # Enable cache busting for assets
 [params]
   version = "1.0"
-  favicon = "/favicon.ico"
+  favicon = "/logo.svg"
 
 # Asset processing and fingerprinting
 [build]
@@ -16,10 +16,6 @@ disableKinds = ["taxonomy", "term"]
 
 # Cache control headers
 [caches]
-  [caches.getcsv]
-    maxAge = "10s"
-  [caches.getjson]
-    maxAge = "10s"
   [caches.images]
     maxAge = "60m"
   [caches.assets]
@@ -35,7 +31,7 @@ disableKinds = ["taxonomy", "term"]
   disableXML = false
   [minify.tdewolff]
     [minify.tdewolff.css]
-      keepCSS2 = true
+      version = 2
       precision = 0
     [minify.tdewolff.html]
       keepDefaultAttrVals = false

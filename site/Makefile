@@ -29,6 +29,15 @@ clean:
 	rm -rf $(HUGO_DIR)/public
 	rm -f cache-manifest.txt
 
+COMPOSE = docker compose -f ../compose.yml
+
+.PHONY: docker-build docker-optimize
+docker-build:
+	$(COMPOSE) build builder
+
+docker-optimize: docker-build
+	$(COMPOSE) run --rm --user "$$(id -u):$$(id -g)" builder make build-optimized
+
 .PHONY: cache-headers
 cache-headers:
 	@echo "📋 Recommended cache headers for your CDN/reverse proxy:"
