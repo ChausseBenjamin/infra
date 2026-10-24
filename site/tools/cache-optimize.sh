@@ -8,7 +8,7 @@ echo "🚀 Starting Hugo cache optimization..."
 
 # Build the site with cache optimization
 echo "📦 Building Hugo site with optimizations..."
-cd data && hugo --gc --minify --environment production
+cd data && hugo --gc --minify --cleanDestinationDir --environment production
 
 # Go back to root directory
 cd ..
