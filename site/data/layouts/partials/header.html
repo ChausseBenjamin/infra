@@ -183,20 +183,13 @@
     }
   </style>
   
-  {{- /* Deferred CSS loading - fallback to static files */ -}}
+  {{- /* Site styles */ -}}
   <link rel="stylesheet" href="/style.css">
   <noscript><link rel="stylesheet" href="/style.css"></noscript>
   
-  {{- /* FontAwesome - load with low priority */ -}}
+  {{- /* FontAwesome */ -}}
   <link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
   <noscript><link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css"></noscript>
-  
-  {{- /* Fallback script for browsers that don't support preload */ -}}
-  <script>
-    !function(e){"use strict";var t=function(t,n,r){function o(e){return i.body?e():void setTimeout(function(){o(e)})}function a(){d.addEventListener&&d.removeEventListener("load",a),d.media=r||"all"}var i=e.document,d=i.createElement("link");if(n)d.href=n;else{if(!t)return;d.href=t.href,d.crossOrigin=t.crossOrigin}d.rel="stylesheet",d.media="only x",o(function(){i.head.appendChild(d)}),setTimeout(function(){d.addEventListener&&d.addEventListener("load",a),d.onloadcssdefined=a});var c=3e3;setTimeout(function(){a()},c)};e.loadCSS=t}(this);
-    loadCSS("/style.css");
-    loadCSS("/vendor/fontawesome/css/all.min.css");
-  </script>
   
   {{ with .Site.Params.favicon }}<link rel="icon" href="{{ . }}">
   {{ end -}}
