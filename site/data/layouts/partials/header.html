@@ -183,9 +183,10 @@
     }
   </style>
   
-  {{- /* Site styles */ -}}
-  <link rel="stylesheet" href="/style.css">
-  <noscript><link rel="stylesheet" href="/style.css"></noscript>
+  {{- /* Site styles: fingerprinted filename lets us cache immutably */ -}}
+  {{- $siteCSS := resources.Get "style.css" | minify | fingerprint "sha256" -}}
+  <link rel="stylesheet" href="{{ $siteCSS.RelPermalink }}" integrity="{{ $siteCSS.Data.Integrity }}">
+  <noscript><link rel="stylesheet" href="{{ $siteCSS.RelPermalink }}" integrity="{{ $siteCSS.Data.Integrity }}"></noscript>
   
   {{- /* FontAwesome */ -}}
   <link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
